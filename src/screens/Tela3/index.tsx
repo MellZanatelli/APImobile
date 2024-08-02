@@ -3,8 +3,11 @@ import { View, Text, Image, ImageBackground } from "react-native"
 import { styles } from "./styles"
 import { Fundo } from '../../components/fundo'
 import {Scontainer} from '../../styles/globalstyle'
+import { Pontinhos } from '../../components/pontinhos'
+import { Pontos } from '../../styles/globalstyle'
+import { Page } from '../../../App'
 
-export function Tela3() {
+export function Tela3({ setPagina }: Page) {
 
     const bolhas = require('../../assets/bolhas.png')
 
@@ -23,7 +26,12 @@ export function Tela3() {
                     </ImageBackground>
                 </View>
             </View>
-            
+            <View style={Pontos.pontos}>
+                <Pontinhos onPressP={() => setPagina(1)} cor={false} />
+                <Pontinhos onPressP={() => setPagina(2)} cor={true} />
+                <Pontinhos onPressP={() => setPagina(3)} cor={false} />
+                <Pontinhos onPressP={() => setPagina(4)} cor={false} />
+            </View>
         </Fundo>
     )
 }

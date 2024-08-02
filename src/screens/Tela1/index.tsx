@@ -1,11 +1,14 @@
 
-import { View, Text, Image, TouchableOpacity} from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Fundo } from '../../components/fundo';
 import { styles } from "./styles";
 import { Scontainer } from '../../styles/globalstyle';
 import { MenuStackTypes } from "../../navigation/Login.navigation";
+import { Pontinhos } from '../../components/pontinhos'
+import { Pontos } from '../../styles/globalstyle'
+import { Page } from '../../../App'
 
-export function Tela1 ({navigation}: MenuStackTypes){
+export function Tela1({ setPagina }: Page) {
 
     return (
         <Fundo>
@@ -21,11 +24,12 @@ export function Tela1 ({navigation}: MenuStackTypes){
                 </Text>
                 <Image style={styles.img} source={require('../../assets/ecossistema.png')} />
             </View>
-            <View>
-                <TouchableOpacity style = {styles.botao} onPress={() => navigation.push("pag2")}>
-                    <Text style = {styles.txt}> Próximo </Text>
-                </TouchableOpacity>
+            <View style={Pontos.pontos}>
+                <Pontinhos onPressP={() => setPagina(1)} cor={true} />
+                <Pontinhos onPressP={() => setPagina(2)} cor={false} />
+                <Pontinhos onPressP={() => setPagina(3)} cor={false} />
+                <Pontinhos onPressP={() => setPagina(4)} cor={false} />
             </View>
-        </Fundo>
+        </Fundo >
     )
 }
