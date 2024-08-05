@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, KeyboardAvoidingView, TextInput, Alert } from "react-native";
-import { Fundo } from '../../components/fundo';
-import { Zocial } from '@expo/vector-icons';
+import { FundoLog } from '../../components/fundoLogin';
+import { Zocial, Fontisto } from '@expo/vector-icons';
 import { styles } from "./styles";
 import { Scontainer, colors } from '../../styles/globalstyle';
 import { MenuStackTypes } from "../../navigation/Login.navigation";
+import { ButtonInterface } from '../../components/ButtonInterface';
 
 export interface IAutenticar {
     email?: string;
@@ -31,16 +32,41 @@ export function Login({ navigation }: MenuStackTypes) {
         setData({ ...data, ...item });
     }
 
+    function handleGoBack() {
+        navigation.navigate('TelaInicial')
+    }
+
     return (
+        <FundoLog>
         <View style={Scontainer.container}>
             <KeyboardAvoidingView>
                 <Text style={styles.title}> Login </Text>
                 <View style={styles.formRow}>
-                    <Zocial name="email" style={styles.email} />
+                    <Zocial name="email" style={styles.icon} />
                     <TextInput
-                        placeholderTextColor={colors.}
+                        placeholderTextColor={colors.roxo}
+                        style={styles.input}
+                        placeholder="Email"
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        onChangeText={(i) => handleChange({ email: i })}
+                    />
                 </View>
+                <View style={styles.formRow}>
+                    <Fontisto name="locked" style={styles.icon} />
+                    <TextInput
+                        placeholderTextColor={colors.roxo}
+                        style={styles.input}
+                        placeholder="Senha"
+                        secureTextEntry={true}
+                        autoCapitalize="none"
+                        onChangeText={(i) => handleChange({ password: i })}
+                    />
+                </View>
+                <ButtonInterface title='Voltar' type='primary' onPressI={handleGoBack}/>
+                <ButtonInterface title='Entrar' type='secondary' onPressI={handleRegister}/>
             </KeyboardAvoidingView>
         </View>
+        </FundoLog>
     );
 }
